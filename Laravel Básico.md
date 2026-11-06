@@ -1,4 +1,3 @@
-<br>
 
 
 ## Métodos de criação de rotas:
@@ -53,14 +52,42 @@ Laravel -> Fazem como no java, mas são arquivos escritos em PHP e são conectad
 
 ### Repository:
 Java -> Arquivo de persistência de dados com o banco
-Laravel -> Não tem, quem faz isso é o eloquent através do model
+Laravel -> Não é tão comum quanto na arquitetura SpringBoot. É mais utilizado para salvar querys mais específicas e que podem ser reutilizadas 
 
 ### Factories 
--> Serve como uma fábrica de objetos ficticios
+-> Serve como uma fábrica de objetos ficticios, com dados fake vindos diretamente de um dicionário que o próprio laravel fornece
 
 ### Seeder 
--> Atua como gerênciador de factiories e faz os inserts no banco de dados (muito usado para testes junto com o factory)
+-> Atua como gerenciador de factories e faz os inserts no banco de dados (muito usado para testes junto com o factory). 
 
 
-	## Cache
+## Autenticação
 
+-> No laravel as formas de autenticação mais comum são autenticação via cookies (via CSRF), voltado mais para aplicações fullstack, com laravel backend + laravel blade e também utilizando autenticação via Sanctum (tokens via header)
+
+- JWT vs Sanctum: 
+	- JWT é stateless enquanto o Sanctum é statefull
+	- JWT carrega as informações do usuário dentro dele. Sanctum carrega apenas o ID da tabela de tokens, e o próprio banco armazena os dados do usuário ao invés do token
+
+## Middlewares: O que são?
+
+-> Em resumo, middlewares são como uma cadeia filtros criados para monitorar e validar as requisições HTTP recebidas pela aplicação
+
+-> Podem ser criadas com o comando php artisan make:middleware
+
+## Providers
+
+-> Permitem a criação de gates que são funções anônimas que servem para controle de autorização de usuários autenticados, determinando se eles tem ou não permissões para certos tipos de ações
+
+-> Permitem o registro de policies também
+
+-> São definidos nos providers de auth e chamados no controller/service
+
+
+## Policies
+
+-> Assim como os gates, servem para lidar com autorização de usuários e definição de permissões
+
+-> Podem ser criadas com o comando php artisan make:policy
+
+-> São registrados nos middlewares
